@@ -1,1 +1,33 @@
-hi
+#canvas {
+    border: 5px solid black;
+    height: 500px;
+    width: 900px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#input-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-top: 30px;
+    margin: auto;
+    gap: 20px;
+}
+
+#title {
+    text-align: center;
+}
