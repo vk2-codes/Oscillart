@@ -14,4 +14,16 @@ var length = 0;
 const audioCtx = new AudioContext();
 const gainNode = audioCtx.createGain();
 
-//creat Oscillator node
+//create Oscillator node
+const oscillator = audioCtx.createOscillator();
+oscillator.connect(gainNode);
+gainNode.connect(audioCtx.destination);
+oscillator.type = "sine";
+
+oscillator.start();
+gainNode.gain.value = 0;
+
+//define canvas variables
+var canvas = document.getElementById("canvas");
+
+
