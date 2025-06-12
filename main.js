@@ -1,7 +1,7 @@
 const input = document.getElementById('input');
-const color_picker = document.getElementById('color1');
+const color_picker1 = document.getElementById('color1');
 const color_picker2 = document.getElementById('color2');
-const vol_slider = document.getElemntById('vol-slider');
+const vol_slider = document.getElementById('vol-slider');
 const recording_toggle = document.getElementById('record');
 
 var interval = null;
@@ -48,7 +48,8 @@ function frequency(pitch) {
     gainNode.gain.setValueAtTime(100, audioCtx.currentTime);
     settting = setInterval(() => {gainNode.gain.value = vol_slider.value;}, 1);
     oscillator.frequency.setValueAtTime(pitch, audioCtx.currentTime);
-    setTimeout(() => { clearInterval(setting); gainNode.gain.value = 0; }, ((timepernote)-10));
+    setTimeout(() => { clearInterval(settting); gainNode.gain.value = 0; }, ((timepernote)-10));
+}
 
 function handle() {
     reset = true;
@@ -75,16 +76,17 @@ function handle() {
         }
     }, timepernote);
 }
+}
 
 var counter = 0;
 function drawWave() {
     clearInterval(interval);
     if (reset) {
-        ctx.clearreact(0, 0, width, height);
+        ctx.clearRect(0, 0, width, height);
         x = 0;
         y = height / 2;
         ctx.moveTo(x, y);
-        ctx.beginpath();
+        ctx.beginPath();
     }
         counter = 0;
     interval = setInterval(line, 20);
@@ -102,7 +104,7 @@ function line() {
     ctx.lineTo(x, y);
     ctx.stroke();
     x = x + 1;
-        }
+     
 
     //increase counter by 1 to show how long interval has been run
     counter++;
@@ -118,7 +120,7 @@ function line() {
    function startRecording() {
     const canvasStream = canvas.captureStream(20); //frame rate of canvas
     const audioDestination = audioCtx.createMediaStreamDestination();
-    gainNode.connect(audiodstination0);
+    gainNode.connect(audiodstination);
 
     const combinedStream = new MediaStream();
 
