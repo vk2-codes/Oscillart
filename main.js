@@ -48,6 +48,7 @@ function frequency(pitch) {
     gainNode.gain.setValueAtTime(100, audioCtx.currentTime);
     settting = setInterval(() => {gainNode.gain.value = vol_slider.value;}, 1);
     oscillator.frequency.setValueAtTime(pitch, audioCtx.currentTime);
+    gainNode.gain.setValueAtTime(0, audioCtx.currentTime + ((timepernote/1000)-0.1));
     setTimeout(() => { clearInterval(settting); gainNode.gain.value = 0; }, ((timepernote)-10));
 }
 
@@ -64,7 +65,7 @@ function handle() {
 
     for (i = 0; i < usernotes.length; i++) {
         noteslist.push(notenames.get(usernotes.charAt(i)));
-
+    }
     let j = 0;
     repeat = setInterval(() => {
         if(j < noteslist.length) {
@@ -75,7 +76,7 @@ function handle() {
             clearInterval(repeat);
         }
     }, timepernote);
-}
+
 }
 
 var counter = 0;
@@ -135,7 +136,7 @@ function line() {
     a.download = 'recording.webm';
     a.click();
     URL.revokeObjectURL(url);
-   };
+
 
    recorder.start();
 }
