@@ -25,7 +25,7 @@ gainNode.gain.value = 0;
 
 //define canvas variables
 var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
+var ctx = canvas.getContext("2d")
 var width = ctx.canvas.width;
 var height = ctx.canvas.height;
 
@@ -111,6 +111,7 @@ function line() {
     counter++;
 
     if(counter > timepernote/20) {
+        gainNode.gain.value = 0;
         clearInterval(interval);
         }
    }
@@ -121,15 +122,15 @@ function line() {
    function startRecording() {
     const canvasStream = canvas.captureStream(20); //frame rate of canvas
     const audioDestination = audioCtx.createMediaStreamDestination();
-    gainNode.connect(audiodstination);
+    gainNode.connect(audiodestination);
 
     const combinedStream = new MediaStream();
 
     //Add in video data
-    canvasStream.getVideoTracks().forEach(track => combinedStream.addtrack(track));
+    canvasStream.getVideoTracks().forEach(track => combinedStream.addTrack(track));
     audioDestination.stream.getAudioTracks().forEach(track => combinedStream.addTrack(track));
 
-    recorder = new MediaRecorder(combinedStream, { type: 'video/webm' });
+    recorder = new MediaRecorder(combinedStream, { mimeType: 'video/webm' });
     recorder.ondataavailable = e => {
  if (e.data.size > 0) {
    chunks.push(e.data);
