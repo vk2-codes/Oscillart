@@ -7,7 +7,7 @@ const recording_toggle = document.getElementById('record');
 var interval = null;
 var reset = false;
 
-var timpernote = 0;
+var timepernote = 0;
 var length = 0;
 
 //create web audio api elements
@@ -122,7 +122,7 @@ function line() {
    function startRecording() {
     const canvasStream = canvas.captureStream(20); //frame rate of canvas
     const audioDestination = audioCtx.createMediaStreamDestination();
-    gainNode.connect(audiodestination);
+    gainNode.connect(audioDestination);
 
     const combinedStream = new MediaStream();
 
