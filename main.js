@@ -130,13 +130,20 @@ function line() {
     audioDestination.stream.getAudioTracks().forEach(track => combinedStream.addTrack(track));
 
     recorder = new MediaRecorder(combinedStream, { type: 'video/webm' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'recording.webm';
-    a.click();
-    URL.revokeObjectURL(url);
-
+    recorder.ondataavailable = e => {
+ if (e.data.size > 0) {
+   chunks.push(e.data);
+ }
+};
+recorder.onstop = () => {
+   const blob = new Blob(chunks, { type: 'video/webm' });
+   const url = URL.createObjectURL(blob);
+   const a = document.createElement('a');
+   a.href = url;
+   a.download = 'recording.webm';
+   a.click();
+   URL.revokeObjectURL(url);
+};
 
    recorder.start();
 }
